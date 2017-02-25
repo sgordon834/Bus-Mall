@@ -1,5 +1,5 @@
 body {
-  text-align: left;
+  /*text-align: left;*/
   font-family: sans-serif;
   color: beige;
   background: #29516d;
@@ -22,10 +22,29 @@ body {
   border: black solid 5px;
 }
 
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+
+
+}
+
 .pic {
-  display: inline-flex;
+  display: flex;
   height: 300;
   width: 300;
+  margin: auto;
+}
+
+.pic img{
+  height: 300;
+  width: 300;
+  margin-top: 80px;
+  border: solid black 5px;
 }
 
  .bus {
@@ -39,4 +58,8 @@ body {
   padding: 8px 8px 0 0;
   color: white;
 
+}
+
+.hide {
+  visibility: hidden;
 }
