@@ -2,30 +2,29 @@ var productImages = ['banana', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthu
 
 
 var productArray = [];
+var counter = 0;
 
-
-function Product(name, path) {
+function Product(name, path, votes, timesShown) {
   this.name = name;
   this.path = path;
-  this.votes = 0;
-  this.timesShown = 0;
+  this.votes = votes;
+  this.timesShown = timesShown;
   productArray.push(this);
 }
 
 for (var i = 0; i < productImages.length; i++) {
   var product = new Product(productImages[i], 'img/' + productImages[i] + '.jpg');
 }
-console.log(productArray);
+// console.log(productArray);
 
 function randomPictureIndex() {
-  var randomPic = Math.floor(Math.random() * productImages.length);
-  return randomPic;
+  return randomPic = Math.floor(Math.random() * productImages.length);
 }
 // console.log(randomPics);
 
 // function for generating pictures into the empty div elements
 function displayPics() {
-  console.log('displayPics');
+  // console.log('displayPics');
   var picOne = document.getElementById('picOne');
   var picTwo = document.getElementById('picTwo');
   var picThree = document.getElementById('picThree');
@@ -42,9 +41,11 @@ function displayPics() {
   var picIndex = randomPictureIndex();
   picOne.src = productArray[picIndex].path;
   picOne.id = productArray[picIndex].name;
-//   productArray[picIndex].counter++;
-//   // picOne.appendChild(imgOne); **Not needed .src and .id are appending to HTML.
-//
+
+  // productArray[picIndex].votes++;
+  // console.log(votes);
+  // picOne.appendChild(imgOne); **Not needed .src and .id are appending to HTML.
+
   // var imgTwo = document.createElement('img');
   var picIndexTwo = randomPictureIndex();
   while (picIndexTwo === picIndex) {
@@ -52,9 +53,8 @@ function displayPics() {
   }
   picTwo.src = productArray[picIndexTwo].path;
   picTwo.id = productArray[picIndexTwo].name;
-  productArray[picIndexTwo].counter++;
+  // productArray[picIndexTwo].votes++;
   // picTwo.appendChild(imgTwo);
-  //
   // var imgThree = document.createElement('img');
   var picIndexThree = randomPictureIndex();
   while (picIndexThree === picIndexTwo || picIndexThree === picIndex) {
@@ -62,27 +62,33 @@ function displayPics() {
   }
   picThree.src = productArray[picIndexThree].path;
   picThree.id = productArray[picIndexThree].name;
-  productArray[picIndexThree].counter++;
+  // productArray[picIndexThree].votes++;
 //   picThree.appendChild(imgThree);
 }
 displayPics();
+// var counter = 0;
 
-var counter = 0;
-
-function tracker() {
-
-}
-
-function handleClick(eventClick) {
-  console.log('handleClick', eventClick);
-  console.log(eventClick.target.id);
+//Handle Click event
+function handleClick (eventClick) {
+  console.log('handleClick', 'eventClick');
+  // console.log(eventClick);
   //the object of bubblegum
 for (var i = 0; i < productArray.length; i++) {
-  console.log(productArray[i]);
-}
 
-  console.log();
 }
+}
+handleClick();
 
+//Add number of votes
+function addClicks() {
+console.log('addClickEvents');
+// var picHolder = document.getElementById('picHolder');
+// for (var i = 0; i < productArray.length; i++) {
+  // imageClicked = picHolder[i];
+  // imageClicked.addEventListener('click', handleClick);
+}
+console.log();
+addClicks();
+//Counts number of times images clicked
 var picHolder = document.getElementById('picHolder');
 picHolder.addEventListener('click', handleClick);
