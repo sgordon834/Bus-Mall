@@ -42,15 +42,16 @@ function displayPics() {
 //if calling the src and id no need to appendChild
 
   // var imgOne = document.createElement('img'); **Not needed declared above by getElementById**
+  // var img1 = document.createElement('img');
   var picIndex = randomPictureIndex();
   picOne.src = productArray[picIndex].path;
   picOne.id = productArray[picIndex].name;
   productArray[picIndex].timesShown++;
   // console.log(votes);
-  // picOne.appendChild(picOne);
+  // picOne.appendChild(img1);
   // **Not needed .src and .id are appending to HTML.
 
-  // var imgTwo = document.createElement('img');
+  // var img2 = document.createElement('img');
   var picIndexTwo = randomPictureIndex();
   while (picIndexTwo === picIndex) {
     picIndexTwo = randomPictureIndex();
@@ -58,24 +59,27 @@ function displayPics() {
   picTwo.src = productArray[picIndexTwo].path;
   picTwo.id = productArray[picIndexTwo].name;
   productArray[picIndexTwo].timesShown++;
-  // picTwo.appendChild(imgTwo);
+  // picTwo.appendChild(img2);
+
   // var imgThree = document.createElement('img');
   var picIndexThree = randomPictureIndex();
   while (picIndexThree === picIndexTwo || picIndexThree === picIndex) {
     picIndexThree = randomPictureIndex();
   }
+  // var img3 = document.createElement('img')
   picThree.src = productArray[picIndexThree].path;
   picThree.id = productArray[picIndexThree].name;
   productArray[picIndexThree].timesShown++;
-//   picThree.appendChild(imgThree);
+  // picThree.appendChild(img3);
 console.log(productArray[picIndex].timesShown);
-}
+ }
 // displayPics();
-
+//
 var counter = 0;
-
+//
 //Handle Click event
 function handleClick (eventClick) {
+  eventClick.preventDefault();
   console.log('handleClick', eventClick);
   console.log(eventClick.target.id);
   counter++;
@@ -85,26 +89,30 @@ if (productArray[i].name === eventClick.target.id) {
   productArray[i].votes++;
   console.log(productArray[i].votes);
 }
-}
-displayPics();
-}
+ }
+  //  displayPics();
+ }
 
+// displayPics();
 // handleClick();
 
 //Add number of votes
 function addClicks() {
 console.log('addClickEvents');
-// var pic1 = document.getElementById('clickMe');
-// for (var i = 0; i < productArray.length; i++) {
-//   pic1 = picHolder[i];
-// }
-//   displayPics();
+var pic1 = document.getElementById('clickMe');
+pic1.addEventListener('click', displayPics);
+for (var i = 0; i < productArray.length; i++) {
+  pic1 = picHolder[i];
+}
+  // displayPics();
+  console.log('display');
 }
 addClicks();
 // var pic = document.getElementById('picHolder', handleClick);
 // pic.addEventListener('click', handleClick);
 // displayPics();
 
-var elPic = document.getElementById('clickMe', handleClick);
+ var elPic = document.getElementById('picHolder', handleClick);
 elPic.addEventListener('click', handleClick);
 console.log();
+// displayPics();
