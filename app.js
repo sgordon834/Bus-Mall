@@ -4,17 +4,16 @@ var productImages = ['banana', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthu
 var productArray = [];
 
 
-function Products(name, path) {
+function Product(name, path) {
   this.name = name;
   this.path = path;
   this.votes = 0;
   this.timesShown = 0;
   productArray.push(this);
-
 }
 
 for (var i = 0; i < productImages.length; i++) {
-  var apple = new Products(productImages[i], 'img/' + productImages[i] + '.jpg');
+  var product = new Product(productImages[i], 'img/' + productImages[i] + '.jpg');
 }
 console.log(productArray);
 
@@ -46,25 +45,25 @@ function displayPics() {
 //   productArray[picIndex].counter++;
 //   // picOne.appendChild(imgOne); **Not needed .src and .id are appending to HTML.
 //
-//   // var imgTwo = document.createElement('img');
-//   var picIndexTwo = randomPictureIndex();
-//   while (picIndexTwo === picIndex) {
-//     picIndexTwo = randomPictureIndex();
-//   }
-//   picTwo.src = productArray[picIndexTwo].path;
-//   picTwo.id = productArray[picIndexTwo].name;
-//   productArray[picIndexTwo].counter++;
-//   // picTwo.appendChild(imgTwo);
-//   //
-//   // var imgThree = document.createElement('img');
-//   var picIndexThree = randomPictureIndex();
-//   while (picIndexThree === picIndexTwo || picIndexThree === picIndex) {
-//     picIndexThree = randomPictureIndex();
-//   }
-//   picThree.src = productArray[picIndexThree].path;
-//   picThree.id = productArray[picIndexThree].name;
-//   productArray[picIndexThree].counter++;
-// //   picThree.appendChild(imgThree);
+  // var imgTwo = document.createElement('img');
+  var picIndexTwo = randomPictureIndex();
+  while (picIndexTwo === picIndex) {
+    picIndexTwo = randomPictureIndex();
+  }
+  picTwo.src = productArray[picIndexTwo].path;
+  picTwo.id = productArray[picIndexTwo].name;
+  productArray[picIndexTwo].counter++;
+  // picTwo.appendChild(imgTwo);
+  //
+  // var imgThree = document.createElement('img');
+  var picIndexThree = randomPictureIndex();
+  while (picIndexThree === picIndexTwo || picIndexThree === picIndex) {
+    picIndexThree = randomPictureIndex();
+  }
+  picThree.src = productArray[picIndexThree].path;
+  picThree.id = productArray[picIndexThree].name;
+  productArray[picIndexThree].counter++;
+//   picThree.appendChild(imgThree);
 }
 displayPics();
 
@@ -72,5 +71,18 @@ var counter = 0;
 
 function tracker() {
 
-
 }
+
+function handleClick(eventClick) {
+  console.log('handleClick', eventClick);
+  console.log(eventClick.target.id);
+  //the object of bubblegum
+for (var i = 0; i < productArray.length; i++) {
+  console.log(productArray[i]);
+}
+
+  console.log();
+}
+
+var picHolder = document.getElementById('picHolder');
+picHolder.addEventListener('click', handleClick);
