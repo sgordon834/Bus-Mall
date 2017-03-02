@@ -1,0 +1,99 @@
+body {
+  /*text-align: left;*/
+  font-family: sans-serif;
+  color: beige;
+  background: #29516d;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  margin: 0 auto;
+  /*margin-left: auto;*/
+  padding: 0;
+  max-width: 1200px;
+  border-radius: 50px 49px 6px 6px;
+
+}
+
+.nav li {
+  padding: 5px 10px 10px 10px;
+  border: black solid 5px;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+
+
+}
+
+.pic {
+  display: flex;
+  height: 300;
+  width: 300;
+  margin: auto;
+}
+
+.pic img{
+  height: 300;
+  width: 300;
+  margin-top: 80px;
+  border: solid black 5px;
+}
+
+.picTwo {
+  display: flex;
+  height: 300;
+  width: 300;
+  margin: auto;
+}
+
+.picTwo img{
+  height: 300;
+  width: 300;
+  margin-top: 80px;
+  border: solid black 5px;
+}
+
+.picThree {
+  display: flex;
+  height: 300;
+  width: 300;
+  margin: auto;
+}
+
+.picThree img{
+  height: 300;
+  width: 300;
+  margin-top: 80px;
+  border: solid black 5px;
+}
+
+ .bus {
+  display: block;
+  margin-right: auto;
+}
+
+.data {
+  float: left;
+  width: 30%;
+  padding: 8px 8px 0 0;
+  color: white;
+
+}
+
+.hide {
+  visibility: hidden;
+}
+
+aside {
+  float: left;
+  width: 20%;
+  padding: 8px 8px 0 0;
+  color: white;
