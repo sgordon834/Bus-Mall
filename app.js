@@ -4,11 +4,12 @@ var productImages = ['banana', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthu
 var productArray = [];
 var counter = 0;
 
+//constructor
 function Product(name, path) {
   this.name = name;
   this.path = path;
   this.votes = 0;
-// this.timesShown = 0;
+  // this.timesShown = 0;
   productArray.push(this);
 }
 
@@ -25,7 +26,7 @@ function randomPictureIndex() {
   return Math.floor(Math.random() * productImages.length);
 }
 
-//Tracks all votes, displays pictures, and events
+//Object literal
 var tracker = {
   picOneEl: document.getElementById('picOne'),
   picTwoEl: document.getElementById('picTwo'),
@@ -38,7 +39,7 @@ var tracker = {
   pic3: null,
   clicks: 1,
 
-//random pics display each time pic is selected
+  //random pics display each time pic is selected
   displayPics: function () {
     this.pic1 = productArray[randomPictureIndex()];
     this.pic2 = productArray[randomPictureIndex()];
@@ -58,7 +59,7 @@ var tracker = {
 
   },
 
-//stops selcections after 15 clicks and allows results to be viewed
+  //stops selcections after 15 clicks and allows results to be viewed
   maxClicks: function () {
     console.log(this.clicks);
     event.preventDefault();
@@ -66,13 +67,13 @@ var tracker = {
       this.imageHolderEl.removeEventListener('click', this.handleClick);
       this.results.addEventListener('click', function (event) {
 
-tracker.viewResults();
+        tracker.viewResults();
       });
     }
 
   },
 
-//Event handler for clicks, votes, and displays random pics
+  //Event handler for clicks, votes, and displays random pics
   handleClick: function (event) {
     tracker.maxClicks();
     if (
@@ -84,7 +85,7 @@ tracker.viewResults();
     }
   },
 
-//counts time pics are selected
+  //counts time pics are selected
   countVotes: function (id) {
     for (var i = 0; i < productArray.length; i++) {
       if (id === productArray[i].name) {
@@ -95,7 +96,7 @@ tracker.viewResults();
     }
   },
 
-//renders results
+  //renders results
   viewResults: function () {
     var ulEl = document.createElement('ul');
 

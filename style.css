@@ -14,7 +14,6 @@ body {
   padding: 0;
   max-width: 1200px;
   border-radius: 50px 49px 6px 6px;
-
 }
 
 .nav li {
@@ -23,14 +22,12 @@ body {
 }
 
 .flex-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-content: center;
-    align-items: center;
-
-
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
 }
 
 .pic {
@@ -40,7 +37,7 @@ body {
   margin: auto;
 }
 
-.pic img{
+.pic img {
   height: 300;
   width: 300;
   margin-top: 80px;
@@ -54,7 +51,7 @@ body {
   margin: auto;
 }
 
-.picTwo img{
+.picTwo img {
   height: 300;
   width: 300;
   margin-top: 80px;
@@ -68,14 +65,14 @@ body {
   margin: auto;
 }
 
-.picThree img{
+.picThree img {
   height: 300;
   width: 300;
   margin-top: 80px;
   border: solid black 5px;
 }
 
- .bus {
+.bus {
   display: block;
   margin-right: auto;
 }
@@ -85,7 +82,6 @@ body {
   width: 30%;
   padding: 8px 8px 0 0;
   color: white;
-
 }
 
 .hide {
