@@ -8,13 +8,13 @@ function Product(name, path) {
   this.name = name;
   this.path = path;
   this.votes = 0;
-  this.timesShown = 0;
+  // this.timesShown = 0;
   productArray.push(this);
 }
 
-Product.prototype.increment = function() {
-  return timesShown += 1;
-};
+// Product.prototype.increment = function() {
+//   return timesShown += 1;
+// };
 
 for (var i = 0; i < productImages.length; i++) {
   var product = new Product(productImages[i], 'img/' + productImages[i] + '.jpg');
@@ -22,145 +22,87 @@ for (var i = 0; i < productImages.length; i++) {
 // console.log(productArray);
 
 
-function randomPictureIndex() {
-  return randomPic = Math.floor(Math.random() * productImages.length);
-}
-// console.log(randomPics);
-
-// function for generating pictures into the empty div elements
-var display = document.getElementById('picHolder');
-var picOne = document.getElementById('picOne');
-var picTwo = document.getElementById('picTwo');
-var picThree = document.getElementById('picThree');
-var click = document.getElementById('clickMe');
-//
-function getPics() {
-  console.log('Get Pics!');
-   var picIndex = randomPictureIndex(productArray);
-   var picIndexTwo = randomPictureIndex(productArray);
-   var picIndexThree = randomPictureIndex(productArray);
-
-   while (picIndexTwo === picIndex) {
-       picIndexTwo = randomPictureIndex(productArray);
-     }
-     while (picIndexThree === picIndexTwo || picIndexThree === picIndex) {
-         picIndexThree = randomPictureIndex(productArray);
-       }
-       return [picIndex, picIndexTwo, picIndexThree];
-}
-    //  getPics();
-
-     function displayPics() {
-       console.log('display my pics');
-       var pics = this.getPics(productArray);
-       var getPics1 = productArray[pics[0]];
-       var getPics2 = productArray[pics[1]];
-       var getPics3 = productArray[pics[2]];
-
-       picOne.src = getPics1.path;
-       picTwo.src = getPics2.path;
-       picThree.src = getPics3.path;
-
-       picOne.id = getPics1.name;
-       picTwo.id = getPics2.name;
-       picThree.id = getPics3.name;
-
-     }
-
-
-
-// picOne.textContent = '';
-// picTwo.textContent = '';
-// picThree.textContent = '';
-
-
-
-// function displayPics() {
-//   console.log('displayPics');
-// //Had too many variables declared that were unneeded
-// //if calling the src and id no need to appendChild
-//
-//   // var imgOne = document.createElement('img'); **Not needed declared above by getElementById**
-//   // var img1 = document.createElement('img');
-//   var picIndex = randomPictureIndex();
-//   picOne.src = productArray[picIndex].path;
-//   picOne.id = productArray[picIndex].name;
-//   productArray[picIndex].timesShown++;
-//   // console.log(votes);
-//   // picOne.appendChild(img1);
-//   // **Not needed .src and .id are appending to HTML.
-//
-//   // var img2 = document.createElement('img');
-//   var picIndexTwo = randomPictureIndex();
-//   while (picIndexTwo === picIndex) {
-//     picIndexTwo = randomPictureIndex();
-//   }
-//   picTwo.src = productArray[picIndexTwo].path;
-//   picTwo.id = productArray[picIndexTwo].name;
-//   productArray[picIndexTwo].timesShown++;
-//   // picTwo.appendChild(img2);
-//
-//   // var imgThree = document.createElement('img');
-//   var picIndexThree = randomPictureIndex();
-//   while (picIndexThree === picIndexTwo || picIndexThree === picIndex) {
-//     picIndexThree = randomPictureIndex();
-//   }
-//   var img3 = document.createElement('img')
-//   picThree.src = productArray[picIndexThree].path;
-//   picThree.id = productArray[picIndexThree].name;
-//   productArray[picIndexThree].timesShown++;
-//   // picThree.appendChild(img3);
-// console.log(productArray[picIndex].timesShown);
-//  }
-// displayPics();
-
-var counter = 0;
-
-//Handle Click event
-
-function handleClick (eventClick) {
-  eventClick.preventDefault();
-  console.log('handleClick', eventClick);
-  console.log(eventClick.target.id);
-  counter++;
-  //the object of bubblegum
-// for (var i = 0; i < productArray.length; i++){
-// if (productArray[i].name === eventClick.target.id) {
-if(event.target.id !== 'picholder'){
-  displayPics();
-  productArray[i].votes++;
-  console.log(productArray[i].votes);
-}
-}
-// if (counter < 5) {
-//    getPics();
-
-
-
-//Add number of votes
-// function addClicks() {
-// console.log('addClickEvents');
-// for (var i = 0; i < productArray.length; i++) {
-//   // if (productArray[i] ===)
+// function randomPictureIndex() {
+//   return randomPic = Math.floor(Math.random() * productImages.length);
 // }
-//   // console.log('display');
-// }
-// addClicks();
-// var pic = document.getElementById('picHolder', handleClick);
-// pic.addEventListener('click', handleClick);
-// displayPics();
 
+var tracker = {
+  picOneEl: document.getElementById('picOne'),
+  picTwoEl: document.getElementById('picTwo'),
+  picThreeEl: document.getElementById('picThree'),
+  viewResultsEl: document.getElementById('aftermath'),
+  results: document.getElementById('showMe'),
+  imageHolderEl: document.getElementById('picHolder'),
+  pic1: null,
+  pic2: null,
+  pic3: null,
+  clicks: 1,
 
+  randomPictureIndex: function() {
+    return Math.floor(Math.random() * productImages.length);
+  },
 
-// var el = document.getElementsByClassName('picholder');
-// el.addEventListener('click', handleClick);
-// var elTwo = document.getElementById('picholder');
-// elTwo.addEventListener('click', handleClick);
-// var elThree = document.getElementById('picholder');
-// elThree.addEventListener('click', handleClick);
+  displayPics: function() {
+    this.pic1 = productArray[this.randomPictureIndex()];
+    this.pic2 = productArray[this.randomPictureIndex()];
+    this.pic3 = productArray[this.randomPictureIndex()];
 
-displayPics();
-// getPics();
-var elPic = document.getElementById('clickMe');
-elPic.addEventListener('click', handleClick);
-// console.log();
+    if (this.pic1 === this.pic2 || this.pic1 === this.pic3 || this.pic2 === this.pic3) {
+      this.displayPics();
+    }
+
+    this.picOneEl.src = this.pic1.path;
+    this.picOneEl.id = this.pic1.name;
+    this.picTwoEl.src = this.pic2.path;
+    this.picTwoEl.id = this.pic2.name;
+    this.picThreeEl.src = this.pic3.path;
+    this.picThreeEl.id = this.pic3.name;
+  },
+
+  maxClicks: function() {
+    console.log(this.clicks);
+    if (this.clicks > 14) {
+      this.imageHolderEl.removeEventListener('click', this.handleClick);
+      this.results.addEventListener('click', function(e) {
+        e.preventDefault();
+        tracker.viewResults();
+      });
+    }
+
+  },
+
+  handleClick: function(e) {
+    tracker.maxClicks();
+    if (
+      e.target.id === tracker.pic1.name || e.target.id === tracker.pic2.name || e.target.id === tracker.pic3.name
+    ) {
+      tracker.clicks++;
+      tracker.countVotes(e.target.id);
+      tracker.displayPics();
+    }
+  },
+
+  countVotes: function(elId) {
+    for (var i = 0; i < productArray.length; i++) {
+      if (elId === productArray[i].name) {
+        productArray[i].votes += 1;
+        console.log(productArray[i]);
+        return;
+      }
+    }
+  },
+
+  viewResults: function() {
+    var ulEl = document.createElement('ul');
+
+    for (var i in productArray) {
+      var liEl = document.createElement('li');
+      liEl.textContent = productArray[i].name + ': ' + productArray[i].votes;
+      ulEl.appendChild(liEl);
+    }
+    this.viewResultsEl.appendChild(ulEl);
+  }
+};
+
+tracker.imageHolderEl.addEventListener('click', tracker.handleClick);
+tracker.displayPics();
