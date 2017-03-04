@@ -3,7 +3,6 @@ var productImages = ['banana', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthu
 
 var productArray = [];
 var counter = [];
-// var displayNames = [];
 var results = document.getElementById('showMe');
 
 
@@ -13,7 +12,6 @@ function Product(name, path) {
   this.votes = 0;
 // this.timesShown = 0;
   productArray.push(this);
-  // displayNames.push(this.name);
 };
 // Product.prototype.increment = function() {
 //   return timesShown += 1;
