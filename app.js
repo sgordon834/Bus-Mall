@@ -31,6 +31,7 @@ var tracker = {
   picTwoEl: document.getElementById('picTwo'),
   picThreeEl: document.getElementById('picThree'),
   imageHolderEl: document.getElementById('picHolder'),
+  viewResultsEl: document.getElementById('aftermath'),
   pic1: null,
   pic2: null,
   pic3: null,
@@ -84,6 +85,19 @@ var tracker = {
 
   },
 
+  viewResults: function () {
+    var ulEl = document.createElement('ul');
+
+    for (var i = 0; i < productArray.length; i++) {
+      var liEl = document.createElement('li');
+      liEl.textContent = productArray[i].name + ': ' + productArray[i].votes;
+      ulEl.appendChild(liEl);
+    }
+
+    this.viewResultsEl.appendChild(ulEl);
+  },
+
+
 //counts time pics are selected
   countVotes: function () {
     if(event.target.id === tracker.pic1.name) {
@@ -115,8 +129,12 @@ var dynamicColors = function() {
     return "rgb(" + r + "," + g + "," + b + ")";
 }
 
+//renders results
+
+
 
 tracker.imageHolderEl.addEventListener('click', tracker.handleClick);
+tracker.viewResultsEl.addEventListener('click', tracker.handleClick);
 tracker.displayPics();
 
 var chartResults = function() {
