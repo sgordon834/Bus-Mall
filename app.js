@@ -7,7 +7,7 @@ function Product(name, path) {
   this.name = name;
   this.path = path;
   this.votes = 0;
-// this.timesShown = 0;
+  // this.timesShown = 0;
   productArray.push(this);
 };
 // Product.prototype.increment = function() {
@@ -43,8 +43,8 @@ var tracker = {
 
 
 
-//random pics display each time pic is selected
-  displayPics: function () {
+  //random pics display each time pic is selected
+  displayPics: function() {
     this.pic1 = productArray[randomPictureIndex()];
     this.pic2 = productArray[randomPictureIndex()];
     this.pic3 = productArray[randomPictureIndex()];
@@ -63,21 +63,21 @@ var tracker = {
 
   },
 
-//stops selcections after 15 clicks and allows results to be viewed
-  maxClicks: function () {
-    if(tracker.totalClicks > 14) {
+  //stops selcections after 15 clicks and allows results to be viewed
+  maxClicks: function() {
+    if (tracker.totalClicks > 14) {
       tracker.imageHolderEl.removeEventListener('click', tracker.handleClick);
       console.log('max clicks allowed');
       collectData();
-      // tracker.viewResults();
+      tracker.viewResults();
       storeData();
       return;
     }
   },
 
-//Event handler for clicks, votes, and displays random pics
+  //Event handler for clicks, votes, and displays random pics
 
-  handleClick: function (event) {
+  handleClick: function(event) {
     // tracker.maxClicks();
     if (
       event.target.id === tracker.pic1.name || event.target.id === tracker.pic2.name || event.target.id === tracker.pic3.name
@@ -93,7 +93,7 @@ var tracker = {
 
   },
 
-  viewResults: function () {
+  viewResults: function() {
     var ulEl = document.createElement('ul');
 
     for (var i in productArray) {
@@ -105,16 +105,15 @@ var tracker = {
     this.viewResultsEl.appendChild(ulEl);
   },
 
-
-//counts time pics are selected
-  countVotes: function () {
-    if(event.target.id === tracker.pic1.name) {
+  //counts time pics are selected
+  countVotes: function() {
+    if (event.target.id === tracker.pic1.name) {
       tracker.pic1.votes++;
     }
-    if(event.target.id === tracker.pic2.name) {
+    if (event.target.id === tracker.pic2.name) {
       tracker.pic2.votes++;
     }
-    if(event.target.id === tracker.pic3.name) {
+    if (event.target.id === tracker.pic3.name) {
       tracker.pic3.votes++;
     }
     console.log('pic picked was ' + event.target.id);
@@ -123,8 +122,8 @@ var tracker = {
 };
 // };
 
- function collectData() {
-  for(var i = 0; i < productArray.length; i++) {
+function collectData() {
+  for (var i = 0; i < productArray.length; i++) {
     tracker.counter.push(productArray[i].votes);
   }
 };
@@ -137,7 +136,7 @@ function storeData() {
   console.log(storeData);
 };
 
-//get data
+//get data from stringify
 function retrieveData() {
   var stringProduct = localStorage.getItem('stringProduct');
   var parsedProducts = JSON.parse(stringProduct);
@@ -145,41 +144,37 @@ function retrieveData() {
 }
 
 function dynamicColors() {
-    var r = Math.floor(Math.random() * 255);
-    var g = Math.floor(Math.random() * 255);
-    var b = Math.floor(Math.random() * 255);
-    return "rgb(" + r + "," + g + "," + b + ")";
+  var r = Math.floor(Math.random() * 255);
+  var g = Math.floor(Math.random() * 255);
+  var b = Math.floor(Math.random() * 255);
+  return "rgb(" + r + "," + g + "," + b + ")";
 }
 
-
-
 tracker.imageHolderEl.addEventListener('click', tracker.handleClick);
-// tracker.viewResultsEl.addEventListener('click', tracker.viewResults);
+// tracker.viewResultsEl.addEventListener('click', chartResults);
+tracker.results.addEventListener('click', chartResults);
 tracker.displayPics();
 
 function chartResults() {
   drawChart();
 };
 
-tracker.results.addEventListener('click', chartResults);
+
 
 var data = {
   labels: productImages,
-  datasets: [
-    {
+  datasets: [{
     label: 'CHARTS',
     backgroundColor: dynamicColors(),
     borderColor: dynamicColors(),
     borderWidth: 1,
     data: tracker.counter,
-  }
-  ]
+  }]
 };
-
 
 function drawChart() {
   var ctx = document.getElementById('myChart').getContext('2d');
-  myChartData = new Chart(ctx,{
+  myChartData = new Chart(ctx, {
     type: 'bar',
     data: data,
   });
