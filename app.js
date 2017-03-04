@@ -3,6 +3,10 @@ var productImages = ['banana', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthu
 
 var productArray = [];
 var counter = 0;
+var displayNames = [];
+var clickArray = [];
+var results = document.getElementById('showMe');
+
 
 function Product(name, path) {
   this.name = name;
@@ -10,7 +14,14 @@ function Product(name, path) {
   this.votes = 0;
 // this.timesShown = 0;
   productArray.push(this);
+  displayNames.push(this.name);
+  // chartData.data.datasets[0].data.push(this.votes);
+  // console.log(chartData);
 }
+
+// var ctx = document.getElementById("myChart");
+// var my = new Product(ctx, chartData);
+
 
 
 // Product.prototype.increment = function() {
@@ -25,17 +36,92 @@ function randomPictureIndex() {
   return Math.floor(Math.random() * productImages.length);
 }
 
+
+// var ctx = document.getElementById("myChart").getContext('2d');
+// var chartData = new Chart(ctx,  {
+//     type: 'bar',
+//     data: {
+//         labels: productImages,
+//         datasets: [{
+//             label: '# of Votes',
+//             data: data,
+//             backgroundColor: [
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(54, 162, 235, 0.2)',
+//                 'rgba(255, 206, 86, 0.2)',
+//                 'rgba(75, 192, 192, 0.2)',
+//                 'rgba(153, 102, 255, 0.2)',
+//                 'rgba(255, 159, 64, 0.2)'
+//             ],
+//             borderColor: [
+//                 'rgba(255,99,132,1)',
+//                 'rgba(54, 162, 235, 1)',
+//                 'rgba(255, 206, 86, 1)',
+//                 'rgba(75, 192, 192, 1)',
+//                 'rgba(153, 102, 255, 1)',
+//                 'rgba(255, 159, 64, 1)'
+//             ],
+//             borderWidth: 1
+//         }]
+//     }
+//
+// });
+
+// function handleResultsButton() {
+//   for (var j = 0; j < productImages.length; j++) {
+//   productArray.push(imageArray[j].name);
+//   clickArray.push(imageArray[j].clicks);
+//   }
+//   return;
+//   drawChart();
+// };
+
+
+// var ctx = document.getElementById('myChart').getContext('2d');
+//
+// // myChart.data.datasets[0].data => will get you the data array
+// var myChart = new Product(ctx, {
+//   type: 'bar',
+//   data: {
+//     labels: ['banana', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'tauntaun', 'unicorn', 'water-can', 'wine-glass'],// This will hold the name of each product image
+//     datasets: [{
+//       label: '# of Votes',
+//       data: [], // This will hold the votes for each product image
+//       backgroundColor: [
+//         'rgba(255, 99, 132, 0.2)',
+//         'rgba(54, 162, 235, 0.2)',
+//         'rgba(255, 206, 86, 0.2)',
+//         'rgba(75, 192, 192, 0.2)',
+//         'rgba(153, 102, 255, 0.2)',
+//         'rgba(255, 159, 64, 0.2)'
+//       ],
+//       borderColor: [
+//         'rgba(255,99,132,1)',
+//         'rgba(54, 162, 235, 1)',
+//         'rgba(255, 206, 86, 1)',
+//         'rgba(75, 192, 192, 1)',
+//         'rgba(153, 102, 255, 1)',
+//         'rgba(255, 159, 64, 1)'
+//       ],
+//       borderWidth: 1
+//     }]
+//   }
+// });
+
+
+
 //Tracks all votes, displays pictures, and events
 var tracker = {
   picOneEl: document.getElementById('picOne'),
   picTwoEl: document.getElementById('picTwo'),
   picThreeEl: document.getElementById('picThree'),
   viewResultsEl: document.getElementById('aftermath'),
-  results: document.getElementById('showMe'),
+  // results: document.getElementById('showMe'),
   imageHolderEl: document.getElementById('picHolder'),
   pic1: null,
   pic2: null,
   pic3: null,
+  chartData: null,
   clicks: 1,
 
 //random pics display each time pic is selected
@@ -73,6 +159,7 @@ tracker.viewResults();
   },
 
 //Event handler for clicks, votes, and displays random pics
+
   handleClick: function (event) {
     tracker.maxClicks();
     if (
@@ -109,6 +196,55 @@ tracker.viewResults();
   },
 
 };
+
+
+var handleResults = function() {
+  drawChart();
+};
+results.addEventListener('click', handleResults);
+
+var data = {
+  labels: productImages,
+  datasets: [
+    {
+    label: 'CHARTS',
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(255, 206, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(255, 159, 64, 0.2)'
+    ],
+    borderColor: [
+      'rgba(255,99,132,1)',
+      'rgba(54, 162, 235, 1)',
+      'rgba(255, 206, 86, 1)',
+      'rgba(75, 192, 192, 1)',
+      'rgba(153, 102, 255, 1)',
+      'rgba(255, 159, 64, 1)'
+    ],
+    borderWidth: 1,
+    data: clickArray,
+  }
+  ]
+};
+
+
+function drawChart() {
+  var ctx = document.getElementById('myChart').getContext('2d');
+  busMallChart = new Chart(ctx,{
+    type: 'bar',
+    data: data,
+  });
+};
+
+var ctx = document.getElementById('myChart').getContext('2d');
+
+// myChart.data.datasets[0].data => will get you the data array
+
+
+
 
 //event listener for tracker and call display pics function
 tracker.imageHolderEl.addEventListener('click', tracker.handleClick);
