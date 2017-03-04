@@ -92,8 +92,13 @@ body {
   visibility: hidden;
 }
 
+.buttondiv {
+  text-align: center;
+  
+}
+
 aside {
   float: left;
   width: 20%;
   padding: 8px 8px 0 0;
-  color: white;
+  color: black;

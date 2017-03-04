@@ -2,9 +2,6 @@ var productImages = ['banana', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthu
 
 
 var productArray = [];
-var counter = [];
-var results = document.getElementById('showMe');
-
 
 function Product(name, path) {
   this.name = name;
@@ -21,22 +18,30 @@ for (var i in productImages) {
   var product = new Product(productImages[i], 'img/' + productImages[i] + '.jpg');
 }
 
+//JSON retieve data stored in productImages Array
+retrieveData();
+
 function randomPictureIndex() {
   return Math.floor(Math.random() * productImages.length);
 }
 
-//Tracks all votes, displays pictures, and events
+//obj literals for use in functions/methods
 var tracker = {
   picOneEl: document.getElementById('picOne'),
   picTwoEl: document.getElementById('picTwo'),
   picThreeEl: document.getElementById('picThree'),
   imageHolderEl: document.getElementById('picHolder'),
-  viewResultsEl: document.getElementById('aftermath'),
+  viewResultsEl: document.getElementById('dispResults'),
+  results: document.getElementById('showMe'),
+
   pic1: null,
   pic2: null,
   pic3: null,
   chartData: null,
   totalClicks: 0,
+  counter: [],
+
+
 
 //random pics display each time pic is selected
   displayPics: function () {
@@ -63,6 +68,8 @@ var tracker = {
     if(tracker.totalClicks > 14) {
       tracker.imageHolderEl.removeEventListener('click', tracker.handleClick);
       console.log('max clicks allowed');
+      collectData();
+      // tracker.viewResults();
       storeData();
       return;
     }
@@ -80,6 +87,7 @@ var tracker = {
       console.log(tracker.totalClicks);
       tracker.countVotes();
       tracker.displayPics();
+
     }
     tracker.maxClicks();
 
@@ -88,7 +96,7 @@ var tracker = {
   viewResults: function () {
     var ulEl = document.createElement('ul');
 
-    for (var i = 0; i < productArray.length; i++) {
+    for (var i in productArray) {
       var liEl = document.createElement('li');
       liEl.textContent = productArray[i].name + ': ' + productArray[i].votes;
       ulEl.appendChild(liEl);
@@ -115,33 +123,45 @@ var tracker = {
 };
 // };
 
-//move data into array
-var storeData = function() {
-  for(var i in productArray) {
-    counter.push(productArray[i].votes);
+ function collectData() {
+  for(var i = 0; i < productArray.length; i++) {
+    tracker.counter.push(productArray[i].votes);
   }
 };
 
-var dynamicColors = function() {
+//move data into array
+//set data/turn data into string
+function storeData() {
+  var stringProduct = JSON.stringify(productArray);
+  localStorage.setItem('stringProduct', stringProduct);
+  console.log(storeData);
+};
+
+//get data
+function retrieveData() {
+  var stringProduct = localStorage.getItem('stringProduct');
+  var parsedProducts = JSON.parse(stringProduct);
+  console.log(parsedProducts);
+}
+
+function dynamicColors() {
     var r = Math.floor(Math.random() * 255);
     var g = Math.floor(Math.random() * 255);
     var b = Math.floor(Math.random() * 255);
     return "rgb(" + r + "," + g + "," + b + ")";
 }
 
-//renders results
-
 
 
 tracker.imageHolderEl.addEventListener('click', tracker.handleClick);
-tracker.viewResultsEl.addEventListener('click', tracker.handleClick);
+// tracker.viewResultsEl.addEventListener('click', tracker.viewResults);
 tracker.displayPics();
 
-var chartResults = function() {
+function chartResults() {
   drawChart();
 };
 
-results.addEventListener('click', chartResults);
+tracker.results.addEventListener('click', chartResults);
 
 var data = {
   labels: productImages,
@@ -151,7 +171,7 @@ var data = {
     backgroundColor: dynamicColors(),
     borderColor: dynamicColors(),
     borderWidth: 1,
-    data: counter,
+    data: tracker.counter,
   }
   ]
 };
