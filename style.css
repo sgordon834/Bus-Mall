@@ -10,7 +10,7 @@ body {
   justify-content: space-around;
   list-style-type: none;
   margin: 0 auto;
-  /*margin-left: auto;*/
+  margin-left: auto;
   padding: 0;
   max-width: 1200px;
   border-radius: 50px 49px 6px 6px;
@@ -94,7 +94,7 @@ body {
 
 .buttondiv {
   text-align: center;
-  
+
 }
 
 aside {
