@@ -69,7 +69,7 @@ var tracker = {
       tracker.imageHolderEl.removeEventListener('click', tracker.handleClick);
       console.log('max clicks allowed');
       collectData();
-      // tracker.viewResults();
+      tracker.viewResults();
       storeData();
       return;
     }
@@ -88,9 +88,9 @@ var tracker = {
       tracker.countVotes();
       tracker.displayPics();
 
+
     }
     tracker.maxClicks();
-
   },
 
   viewResults: function () {
@@ -121,7 +121,7 @@ var tracker = {
     tracker.displayPics();
   }
 };
-// };
+
 
  function collectData() {
   for(var i = 0; i < productArray.length; i++) {
