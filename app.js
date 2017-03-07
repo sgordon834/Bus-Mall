@@ -71,6 +71,8 @@ var tracker = {
       collectData();
       tracker.viewResults();
       storeData();
+      tracker.viewResultsEl.hidden = false;
+      tracker.results.hidden = false;
       return;
     }
   },
@@ -154,14 +156,14 @@ function dynamicColors() {
 
 
 tracker.imageHolderEl.addEventListener('click', tracker.handleClick);
-// tracker.viewResultsEl.addEventListener('click', tracker.viewResults);
+tracker.results.addEventListener('click', chartResults);
 tracker.displayPics();
 
 function chartResults() {
   drawChart();
 };
 
-tracker.results.addEventListener('click', chartResults);
+
 
 var data = {
   labels: productImages,
