@@ -1,6 +1,5 @@
 var productImages = ['banana', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'tauntaun', 'unicorn', 'water-can', 'wine-glass'];
 
-
 var productArray = [];
 
 function Product(name, path) {
@@ -40,8 +39,6 @@ var tracker = {
   chartData: null,
   totalClicks: 0,
   counter: [],
-
-
 
   //random pics display each time pic is selected
   displayPics: function() {
@@ -89,9 +86,7 @@ var tracker = {
       console.log(tracker.totalClicks);
       tracker.countVotes();
       tracker.displayPics();
-
-
-    }
+      }
     tracker.maxClicks();
   },
 
@@ -103,7 +98,6 @@ var tracker = {
       liEl.textContent = productArray[i].name + ': ' + productArray[i].votes;
       ulEl.appendChild(liEl);
     }
-
     this.viewResultsEl.appendChild(ulEl);
   },
 
@@ -122,7 +116,6 @@ var tracker = {
     tracker.displayPics();
   }
 };
-
 
 function collectData() {
   for (var i = 0; i < productArray.length; i++) {
@@ -159,8 +152,6 @@ tracker.displayPics();
 function chartResults() {
   drawChart();
 };
-
-
 
 var data = {
   labels: productImages,
