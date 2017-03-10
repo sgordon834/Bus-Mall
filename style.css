@@ -1,19 +1,24 @@
+
 body {
-  /*text-align: left;*/
   font-family: sans-serif;
   color: black;
   background: beige;
 }
 
+.head-title {
+  display: inline-block;
+}
+
+.nav ul {
+  margin-right: 30%;
+  padding-bottom: 100px;
+}
+
 .nav {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
   list-style-type: none;
-  margin: 0 auto;
-  /*margin-left: auto;*/
   padding: 0;
-  max-width: 1200px;
-  border-radius: 50px 49px 6px 6px;
 }
 
 .nav li {
@@ -88,17 +93,24 @@ body {
   visibility: hidden;
 }
 
-.buttondiv {
+.button {
   text-align: center;
+  width: 175px;
 }
 
 .list {
-  width: 300;
-  height: 300;
+  width: 900px;
+  height: 300px;
+  margin: auto;
+}
+
+.div1 {
+  float;
+  left:
 }
 
 aside {
   float: left;
-  width: 20%;
+  width: 30%;
   padding: 8px 8px 0 0;
   color: black;

@@ -1,6 +1,5 @@
 var productImages = ['banana', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'tauntaun', 'unicorn', 'water-can', 'wine-glass'];
 
-
 var productArray = [];
 
 function Product(name, path) {
@@ -41,8 +40,6 @@ var tracker = {
   totalClicks: 0,
   counter: [],
 
-
-
   //random pics display each time pic is selected
   displayPics: function() {
     this.pic1 = productArray[randomPictureIndex()];
@@ -71,6 +68,8 @@ var tracker = {
       collectData();
       tracker.viewResults();
       storeData();
+      tracker.viewResultsEl.hidden = false;
+      tracker.results.hidden = false;
       return;
     }
   },
@@ -87,10 +86,8 @@ var tracker = {
       console.log(tracker.totalClicks);
       tracker.countVotes();
       tracker.displayPics();
-
-    }
+      }
     tracker.maxClicks();
-
   },
 
   viewResults: function() {
@@ -101,7 +98,6 @@ var tracker = {
       liEl.textContent = productArray[i].name + ': ' + productArray[i].votes;
       ulEl.appendChild(liEl);
     }
-
     this.viewResultsEl.appendChild(ulEl);
   },
 
@@ -120,7 +116,6 @@ var tracker = {
     tracker.displayPics();
   }
 };
-// };
 
 function collectData() {
   for (var i = 0; i < productArray.length; i++) {
@@ -151,15 +146,12 @@ function dynamicColors() {
 }
 
 tracker.imageHolderEl.addEventListener('click', tracker.handleClick);
-// tracker.viewResultsEl.addEventListener('click', chartResults);
 tracker.results.addEventListener('click', chartResults);
 tracker.displayPics();
 
 function chartResults() {
   drawChart();
 };
-
-
 
 var data = {
   labels: productImages,
